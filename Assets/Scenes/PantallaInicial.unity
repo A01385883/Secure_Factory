@@ -910,7 +910,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 516212521}
         m_TargetAssemblyTypeName: Botones, Assembly-CSharp
-        m_MethodName: Iniciar
+        m_MethodName: Minijuego
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
