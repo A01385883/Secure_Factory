@@ -5,13 +5,13 @@ public class Botones : MonoBehaviour
 {
     public void Iniciar()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     // Nuevo método para Créditos
     public void Creditos()
     {
-        SceneManager.LoadScene(3); 
+        SceneManager.LoadScene(4); 
     }
 
     public void Salir()
@@ -22,4 +22,6 @@ public class Botones : MonoBehaviour
             Application.Quit();
         #endif
     }
+
+
 }
