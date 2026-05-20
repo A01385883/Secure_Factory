@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +16,29 @@ public class GameManager : MonoBehaviour
     private float winTimer = 0f;
     private bool countingWin = false;
 
+    //Añadido para el Menu de Pausa
+    [SerializeField] GameObject pauseMenu;
+    public static bool isPaused;
+
+    void Start()
+    {
+        pauseMenu.SetActive(false);
+        isPaused = false;
+    }
+    private void PauseGame()
+    {
+        pauseMenu.SetActive(true);
+        isPaused = true;
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+        isPaused = false;
+         Time.timeScale = 1f;
+    }
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,12 +51,25 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            if (!isPaused)
+            {
+               PauseGame();
+            }
+            else
+            {
+                ResumeGame();
+            }
+
+        }
         if (countingWin)
         {
             winTimer += Time.deltaTime;
             if (winTimer >= 2f) EndGame(true);
         }
     }
+
 
     public void RouterPlaced()
     {
