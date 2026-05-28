@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 05570a69619bcb04fbd13dcd94ff4009
+  - enabled: 1
+    path: Assets/Scenes/Minijuego_Correo.unity
+    guid: 44ae5c0e6f30c4b4d963ed4ff4b8a6bf
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
