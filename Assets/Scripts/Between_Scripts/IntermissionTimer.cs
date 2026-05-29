@@ -18,6 +18,58 @@ public class IntermissionTimer : MonoBehaviour
     private float tiempoFinal;
     private bool timerActivo = false;
 
+[SerializeField] GameObject[] vidasVisuales; // Arrastra los 3 sprites aquí en orden
+[SerializeField] float tiempoDesvanecimiento = 1.5f; // Debe ser menor que tiempoResultado
+
+[SerializeField] TextMeshProUGUI textoScore;
+
+void ActualizarScore()
+{
+    if (textoScore != null && GameManager.Instance != null)
+        textoScore.text = $"Score: {GameManager.Instance.score}";
+}
+
+void AplicarEstadoVidas()
+{
+    if (GameManager.Instance == null) return;
+    
+    int vidasActuales = GameManager.Instance.vidas;
+    
+    for (int v = 0; v < vidasVisuales.Length; v++)
+    {
+        Image imagen = vidasVisuales[v].GetComponent<Image>();
+        if (imagen == null) continue;
+        
+        // Si el índice es mayor o igual a las vidas actuales, apágalo
+        if (v >= vidasActuales)
+            imagen.color = new Color(imagen.color.r, imagen.color.g, imagen.color.b, 0f);
+        else
+            imagen.color = new Color(imagen.color.r, imagen.color.g, imagen.color.b, 1f);
+    }
+}
+
+IEnumerator DesvanecerVida()
+{
+    // Con Too Bad vidas es 0, con Too Slow es la que se acaba de perder
+    int indiceVida = GameManager.Instance.vidas;
+    if (indiceVida >= vidasVisuales.Length) yield break;
+
+    Image imagen = vidasVisuales[indiceVida].GetComponent<Image>();
+    if (imagen == null) yield break;
+
+    float tiempoTranscurrido = 0f;
+    Color colorOriginal = imagen.color;
+
+    while (tiempoTranscurrido < tiempoDesvanecimiento)
+    {
+        tiempoTranscurrido += Time.deltaTime;
+        float alpha = Mathf.Lerp(1f, 0f, tiempoTranscurrido / tiempoDesvanecimiento);
+        imagen.color = new Color(colorOriginal.r, colorOriginal.g, colorOriginal.b, alpha);
+        yield return null;
+    }
+
+    imagen.color = new Color(colorOriginal.r, colorOriginal.g, colorOriginal.b, 0f);
+}
     void Start()
     {
         if (GameManager.Instance != null)
@@ -35,6 +87,8 @@ public class IntermissionTimer : MonoBehaviour
         barraActual.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, anchoOriginal);
 
         panelGetReady.SetActive(true);
+        ActualizarScore();
+        AplicarEstadoVidas();
         StartCoroutine(SecuenciaInicio());
     }
 
@@ -52,10 +106,12 @@ public class IntermissionTimer : MonoBehaviour
         else if (GameManager.Instance.vidas <= 0)
         {
             textoGetReady.text = "Too Bad...";
+            StartCoroutine(DesvanecerVida());
         }
         else
         {
            textoGetReady.text = "Too Slow!";
+           StartCoroutine(DesvanecerVida());
         }
         yield return new WaitForSeconds(2f);
     }
@@ -87,10 +143,6 @@ else
 }
 }
 
-    public void SecuenciaLost()
-    {
-        
-    }
 
     void Update()
     {
@@ -113,9 +165,8 @@ else
 
             // Cargar el minijuego guardado
             if (GameManager.Instance != null)
-                UnityEngine.SceneManagement.SceneManager.LoadScene(
-                    GameManager.Instance.proximoMinijuego
-                );
+Debug.Log($"Intentando cargar: {GameManager.Instance.proximoMinijuego}");
+SceneManager.LoadScene(GameManager.Instance.proximoMinijuego);
         }
     }
 
@@ -132,6 +183,5 @@ void SimularPerdio()
     if (GameManager.Instance != null)
         GameManager.Instance.MinigameLost();
 }
-
 
 }

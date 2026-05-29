@@ -16,7 +16,7 @@ public class Botones : MonoBehaviour
 
   public void Minijuego()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Intermission");
     }
     public void Salir()
     {

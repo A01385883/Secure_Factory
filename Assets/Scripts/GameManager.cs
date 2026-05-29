@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using JetBrains.Annotations;
 using System.Linq;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -22,10 +23,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] int[] NivelesAumentosDificultad = { 4, 8, 14, 20};
     //Dificultad Mayor Generica
     [SerializeField] float[] TiempoAumentosDificultad = { 1.1f, 1.2f, 1.3f, 1.5f};
-    private string[] minijuegosnombres = {"Correo" , "Splash"};
-    [SerializeField] int score = 0;
+    private string[] minijuegosnombres = {"Minijuego_Correo" , "Splash"};
+    // En GameManager
+    public int score { get; private set; }
     //Dont overthink this one
-    public int i = 0;
+    private int i = 0;
+    public int minijuegoactual = 0;
+    public int totalJugados = 0;  
     //Buh
     private bool primerShuffle = true;
 
@@ -47,31 +51,55 @@ void Awake()
         score = 0;
     }
 }
-[ContextMenu("Simular Subida Dificultad")]
-void SimularDificultad()
+
+
+public void addScore()
+    {
+        //Lo dejo aca para que sea mas escalable
+        score += 100;
+    }
+void Start()
 {
-    i = NivelesAumentosDificultad[0]; // Fuerza el primer umbral
+    PrepararPrimerNivel();
+    
 }
 
+void PrepararPrimerNivel()
+{
+    proximoMinijuego = minijuegosnombres[0];
+    minijuegoactual = 1; // El siguiente será el índice 1
+}
 
 public bool NotificacionDificultad()
 {
     foreach (int umbral in NivelesAumentosDificultad)
     {
-        if (i == umbral) return true;
+        if (totalJugados == umbral) return true;
     }
     return false;
 }
-    public float ObtenerMultiplicadorDificultad()
+
+public float ObtenerMultiplicadorDificultad()
 {
     for (int n = NivelesAumentosDificultad.Length - 1; n >= 0; n--)
     {
-        if (i >= NivelesAumentosDificultad[n])
-        {
+        if (totalJugados >= NivelesAumentosDificultad[n])
             return TiempoAumentosDificultad[n];
+    }
+    return 1f;
+}
+
+public void MoreDifficult()
+{
+    for (int n = 0; n < NivelesAumentosDificultad.Length; n++)
+    {
+        if (totalJugados == NivelesAumentosDificultad[n])
+        {
+            packetSpeed *= TiempoAumentosDificultad[n];
+            packetInterval /= TiempoAumentosDificultad[n];
+            break;
         }
     }
-    return 1f; // Sin modificador si aun no llego al primer umbral
 }
 
     void Update()
@@ -86,7 +114,7 @@ public bool NotificacionDificultad()
         //TIME???? YOU MELOOOOONS
         if (gameTimer <= 0)
         {
-            if (gameOver != true)
+            if (gameOver == true )
             {
                 MinigameLost();
             }
@@ -111,9 +139,9 @@ public void ZeroLives()
 public string proximoMinijuego { get; private set; }
 public void PseudoRandomLevels()
 {
-    if (i >= minijuegosnombres.Length)
+    if (minijuegoactual >= minijuegosnombres.Length)
     {
-        i = 0;
+        minijuegoactual = 0;
 
         if (primerShuffle)
         {
@@ -145,36 +173,29 @@ public void PseudoRandomLevels()
     }
 
     // Guarda el proximo minijuego pero carga Intermission
-    proximoMinijuego = minijuegosnombres[i];
-    i++;
+    UnityEngine.Debug.Log($"minijuegoactual: {minijuegoactual}, largo: {minijuegosnombres.Length}");
+    proximoMinijuego = minijuegosnombres[minijuegoactual];
+    minijuegoactual++;
+    totalJugados++;
 
     SceneManager.LoadScene("Intermission");
 }
 
-public void MoreDifficult()
-{
-    // Aumenta dificultad segun nivel actual
-    for (int n = 0; n < NivelesAumentosDificultad.Length; n++)
-    {
-        if (i == NivelesAumentosDificultad[n])
-        {
-            packetSpeed *= TiempoAumentosDificultad[n];
-            packetInterval /= TiempoAumentosDificultad[n];
-            break;
-        }
-    }
-}
+
+
 public bool? ultimoResultado { get; private set; } = null;
 
 public void MinigameWon()
 {
+    UnityEngine.Debug.Log("MinigameWon llamado");
     ultimoResultado = true;
-    score += 1;
+    addScore();
     PseudoRandomLevels();
 }
 
 public void MinigameLost()
 {
+    UnityEngine.Debug.Log($"MinigameLost llamado, vidas: {vidas}");
     ultimoResultado = false;
     vidas -= 1;
     if (vidas <= 0)
@@ -210,7 +231,7 @@ public void MinigameLost()
 
     public bool IsGameOver() => gameOver;
 
-    [ContextMenu("Simular 0 Vidas")]
+[ContextMenu("Simular 0 Vidas")]
 void SimularCeroVidas()
 {
     vidas = 0;
@@ -218,15 +239,21 @@ void SimularCeroVidas()
 }
 
 [ContextMenu("Simular Dificultad 1")]
-void SimularDificultad1() => i = NivelesAumentosDificultad[0];
+void SimularDificultad1() => totalJugados = NivelesAumentosDificultad[0];
 
 [ContextMenu("Simular Dificultad 2")]
-void SimularDificultad2() => i = NivelesAumentosDificultad[1];
+void SimularDificultad2() => totalJugados = NivelesAumentosDificultad[1];
 
 [ContextMenu("Simular Dificultad 3")]
-void SimularDificultad3() => i = NivelesAumentosDificultad[2];
+void SimularDificultad3() => totalJugados = NivelesAumentosDificultad[2];
 
 [ContextMenu("Simular Dificultad 4")]
-void SimularDificultad4() => i = NivelesAumentosDificultad[3];
-    
+void SimularDificultad4() => totalJugados = NivelesAumentosDificultad[3];
+
+[ContextMenu("Simular Subida Dificultad")]
+void SimularDificultad()
+{
+    totalJugados = NivelesAumentosDificultad[0]; // Fuerza el primer umbral
+}
+
 }

@@ -23,5 +23,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Minijuego_Correo.unity
     guid: 44ae5c0e6f30c4b4d963ed4ff4b8a6bf
+  - enabled: 1
+    path: Assets/Scenes/Intermission.unity
+    guid: 98e222ddeed064f46bbfffa1ae7d93cd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
