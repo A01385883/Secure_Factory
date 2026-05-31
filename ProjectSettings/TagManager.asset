@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Game Manager
+  - Registered Components
+  - Event Manager
+  - Timer
   layers:
   - Default
   - TransparentFX

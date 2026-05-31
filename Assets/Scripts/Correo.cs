@@ -1,7 +1,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class Correo : MonoBehaviour
 {
@@ -17,102 +19,151 @@ public class Correo : MonoBehaviour
     [Header("Datos de este correo")]
     public Email datos;
 
-    [Header("Escenas")]
-    public string winScene  = "Credits";
-    public string loseScene = "PantallaInicial";
-
     [Header("Referencias hijos")]
     public Image imagenPerfil;
 
-    [Header("Sprites (asignar solo en UNO de los correos)")]
-    public Sprite[] hackersSprites;
-    public Sprite empleadoSprite;
+    [Header("Timer")]
+    [SerializeField] float tiempoBase = 8f;
+    [SerializeField] RectTransform barraActual;
+    [SerializeField] float tiempoEspera = 2f;
 
-    static List<Sprite> hackersDisponibles;
-    static int hackerIndex = 0;
-    static bool spritesListaReady = false;
+    [Header("Panel Resultado")]
+    [SerializeField] GameObject panelResultado;
+    [SerializeField] TextMeshProUGUI textoResultado;
 
-    void Awake()
-    {
-        if (hackersSprites != null && hackersSprites.Length > 0)
-        {
-            hackersDisponibles = new List<Sprite>(hackersSprites);
-            Shuffle(hackersDisponibles);
-            hackerIndex = 0;
-            spritesListaReady = true;
-        }
-    }
+    [Header("Indicaciones")]
+    [SerializeField] string mensajeIndicaciones = "Download the correct email!";
+    [SerializeField] float tiempoIndicaciones = 1.5f;
+
+    private float tiempoRestante;
+    private float anchoOriginal;
+    private bool timerActivo = false;
+    private bool resultadoMostrado = false;
 
     void Start()
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null) sr.color = datos.color;
+     if (GameManager.Instance != null)
+    {
+        float multiplicador = GameManager.Instance.ObtenerMultiplicadorDificultad();
+        tiempoBase = tiempoBase / multiplicador;
+    }
 
-        if (datos.fotoPerfil == null && spritesListaReady)
+    if (imagenPerfil != null && datos.fotoPerfil != null)
+        imagenPerfil.sprite = datos.fotoPerfil;
+
+
+        // Iniciar timer
+        tiempoRestante = tiempoBase;
+        timerActivo = false;
+        if (barraActual != null)
         {
-            if (datos.esBueno)
-                datos.fotoPerfil = empleadoSprite;
-            else
-            {
-                datos.fotoPerfil = hackersDisponibles[hackerIndex % hackersDisponibles.Count];
-                hackerIndex++;
-            }
+            anchoOriginal = barraActual.rect.width;
+            barraActual.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, anchoOriginal);
         }
 
-        if (imagenPerfil != null && datos.fotoPerfil != null)
-            imagenPerfil.sprite = datos.fotoPerfil;
+        // Mostrar indicaciones
+        if (panelResultado != null)
+        {
+            panelResultado.SetActive(true);
+            if (textoResultado != null)
+                textoResultado.text = mensajeIndicaciones;
+        }
+
+        StartCoroutine(SecuenciaInicio());
+    }
+
+    IEnumerator SecuenciaInicio()
+    {
+        yield return new WaitForSeconds(tiempoIndicaciones);
+
+        if (panelResultado != null)
+            panelResultado.SetActive(false);
+
+        Debug.Log($"[{gameObject.name}] Panel oculto, timer iniciado");
+        timerActivo = true;
+    }
+
+    void Update()
+    {
+        if (!timerActivo || barraActual == null || resultadoMostrado) return;
+
+        if (tiempoRestante > 0)
+        {
+            tiempoRestante -= Time.deltaTime;
+            float progreso = tiempoRestante / tiempoBase;
+            barraActual.SetSizeWithCurrentAnchors(
+                RectTransform.Axis.Horizontal,
+                anchoOriginal * progreso
+            );
+        }
+        else
+        {
+            timerActivo = false;
+            barraActual.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+            MostrarResultado(false);
+        }
     }
 
     public void OnDescargarClicked()
     {
-        if (datos == null) return;
+        Debug.Log($"CLICK DETECTADO en {gameObject.name}");
+        if (datos == null || resultadoMostrado) return;
+        timerActivo = false;
 
         if (datos.esBueno)
         {
             Debug.Log($"'{datos.nombre}' es Legítimo — Ganaste!");
-            Win();
+            MostrarResultado(true);
         }
         else
         {
             Debug.Log($"'{datos.nombre}' es Hacker — Perdiste!");
-            Lose();
+            MostrarResultado(false);
         }
     }
 
     public void OnIgnorarClicked()
     {
-        if (datos == null) return;
+        Debug.Log($"CLICK DETECTADO en {gameObject.name}");
+        if (datos == null || resultadoMostrado) return;
+        timerActivo = false;
 
         if (!datos.esBueno)
         {
             Debug.Log($"'{datos.nombre}' ignorado correctamente — Ganaste!");
-            Win();
+            MostrarResultado(true);
         }
         else
         {
             Debug.Log($"'{datos.nombre}' era legítimo y lo ignoraste — Perdiste!");
-            Lose();
+            MostrarResultado(false);
         }
     }
 
-    void Win()
+    void MostrarResultado(bool gano)
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(winScene);
-    }
+        resultadoMostrado = true;
 
-    void Lose()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(loseScene);
-    }
-
-    void Shuffle<T>(List<T> lista)
-    {
-        for (int i = lista.Count - 1; i > 0; i--)
+        if (panelResultado != null)
         {
-            int j = Random.Range(0, i + 1);
-            (lista[i], lista[j]) = (lista[j], lista[i]);
+            panelResultado.SetActive(true);
+            if (textoResultado != null)
+                textoResultado.text = gano ? "Success!" : "Failure!";
         }
+
+        if (GameManager.Instance != null)
+        {
+            if (gano) GameManager.Instance.MinigameWon();
+            else      GameManager.Instance.MinigameLost();
+        }
+
+        StartCoroutine(EsperarYCargar());
+    }
+
+    IEnumerator EsperarYCargar()
+    {
+        yield return new WaitForSeconds(tiempoEspera);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Intermission");
     }
 }

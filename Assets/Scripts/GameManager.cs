@@ -7,6 +7,12 @@ using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
+    public int difficulty = 1;
+    public bool gameOver = false;
+    public bool debugMode = false;
+    public float timer = 60f;
+    public bool paused = false;
+
     public static GameManager Instance { get; private set; }
 
     public float packetSpeed = 2f;
@@ -16,7 +22,7 @@ public class GameManager : MonoBehaviour
     public int vidas = 3;
     public int gameTimer = 8;
     [SerializeField] float MenuTime = 8f;
-    private bool gameOver = false;
+
     private float winTimer = 0f;
     private bool countingWin = false;
     // Niveles Dificultad Mayor
@@ -229,6 +235,14 @@ public void MinigameLost()
         SceneManager.LoadScene("puntuaje");
     }
 
+    public int ObtenerNivelDificultad()
+    {
+    for (int n = NivelesAumentosDificultad.Length - 1; n >= 0; n--)
+        if (totalJugados >= NivelesAumentosDificultad[n]) return n + 2;
+    return 1;
+    }
+
+    
     public bool IsGameOver() => gameOver;
 
 [ContextMenu("Simular 0 Vidas")]
@@ -257,3 +271,4 @@ void SimularDificultad()
 }
 
 }
+

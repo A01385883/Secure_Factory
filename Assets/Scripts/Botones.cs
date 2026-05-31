@@ -5,19 +5,9 @@ public class Botones : MonoBehaviour
 {
     public void Iniciar()
     {
-        SceneManager.LoadScene(1);
-    }
-
-    // Nuevo método para Créditos
-    public void Creditos()
-    {
-        SceneManager.LoadScene(4); 
-    }
-
-  public void Minijuego()
-    {
         SceneManager.LoadScene("Intermission");
     }
+
     public void Salir()
     {
         #if UNITY_EDITOR
@@ -26,6 +16,4 @@ public class Botones : MonoBehaviour
             Application.Quit();
         #endif
     }
-
-
 }
