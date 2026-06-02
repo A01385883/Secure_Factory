@@ -14,20 +14,20 @@ public class RegisteredComponentsScript : MonoBehaviour
         // Definir arreglos en tiempo de ejecucion
 
         posibleColors = new Color[] { Color.red, Color.blue, Color.green, Color.yellow, Color.cyan, Color.magenta };
-        colors = new Color[] { Color.black, Color.black, Color.black, Color.black };
-        otherColors = new Color[] { Color.black, Color.black };
+        colors = new Color[4];
+        otherColors = new Color[2];
 
         imgs = new Sprite[]
         {
-            Resources.Load<Sprite>("m1"),
-            Resources.Load<Sprite>("m2"),
-            Resources.Load<Sprite>("m3"),
-            Resources.Load<Sprite>("m4"),
-            Resources.Load<Sprite>("m5"),
-            Resources.Load<Sprite>("m6"),
-            Resources.Load<Sprite>("m7"),
-            Resources.Load<Sprite>("m8"),
-            Resources.Load<Sprite>("m9")
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m1"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m2"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m3"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m4"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m5"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m6"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m7"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m8"),
+            Resources.Load<Sprite>("RegisteredComponentsMinigame/m9")
         };
 
         createComponentPalette();

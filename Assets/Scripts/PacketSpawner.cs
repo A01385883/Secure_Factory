@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PacketSpawner : MonoBehaviour
+public class PacketSpawnerColors : MonoBehaviour
 {
     public GameObject packetPrefab;
 

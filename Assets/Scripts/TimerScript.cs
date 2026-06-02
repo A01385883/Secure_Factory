@@ -30,8 +30,8 @@ public class TimerScript : MonoBehaviour
             }
             else
             {
-    gameOver = true;
-    GameManager.Instance.MinigameWon();
+                gameOver = true;
+                GameManager.Instance.MinigameWon();
             }
         }
     }

@@ -66,9 +66,7 @@ public class ComponentScript : MonoBehaviour
         for (int i = 0; i < colors.Length; i++)
         {
             if (colors[i] == fondoRenderer.color)
-            {
                 if (imgs[i] == iconoRenderer.sprite) return true;
-            }
         }
         return false;
     }

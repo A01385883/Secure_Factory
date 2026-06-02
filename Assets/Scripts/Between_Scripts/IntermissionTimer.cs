@@ -1,4 +1,4 @@
-using UnityEngine;
+ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using TMPro;
@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class IntermissionTimer : MonoBehaviour
 {
-    [SerializeField] float tiempoBase = 8f;
+    [SerializeField] float tiempoBase = 5f;
     [SerializeField] RectTransform barraActual;
     [SerializeField] GameObject panelGetReady;
     [SerializeField] TextMeshProUGUI textoGetReady;
@@ -135,7 +135,7 @@ IEnumerator DesvanecerVida()
 // Reemplaza timerActivo = true por:
 if (GameManager.Instance != null && GameManager.Instance.vidas <= 0)
 {
-    SceneManager.LoadScene("Score");
+    SceneManager.LoadScene("Puntuaje");
 }
 else
 {
@@ -158,16 +158,24 @@ else
                 anchoOriginal * progreso
             );
         }
-        else
-        {
-            timerActivo = false;
-            barraActual.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
+else
+{
+    timerActivo = false;
+    barraActual.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, 0);
 
-            // Cargar el minijuego guardado
-            if (GameManager.Instance != null)
-Debug.Log($"Intentando cargar: {GameManager.Instance.proximoMinijuego}");
-SceneManager.LoadScene(GameManager.Instance.proximoMinijuego);
-        }
+    if (GameManager.Instance != null)
+    {
+        Debug.Log($"GameManager existe");
+        Debug.Log($"proximoMinijuego: '{GameManager.Instance.proximoMinijuego}'");
+        Debug.Log($"vidas: {GameManager.Instance.vidas}");
+        Debug.Log($"totalJugados: {GameManager.Instance.totalJugados}");
+        SceneManager.LoadScene(GameManager.Instance.proximoMinijuego);
+    }
+    else
+    {
+        Debug.LogError("GameManager.Instance es null al intentar cargar escena");
+    }
+}
     }
 
 [ContextMenu("Simular Ganó")]

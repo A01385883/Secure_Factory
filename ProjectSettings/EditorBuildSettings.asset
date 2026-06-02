@@ -29,5 +29,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Memorama.unity
     guid: 3eb88e9014ed44dd2b2f1704740bda74
+  - enabled: 1
+    path: Assets/Scenes/RegisteredComponents.unity
+    guid: 2f4703aee9d08d643a2d1e6953ea840f
+  - enabled: 1
+    path: Assets/Scenes/CriticAlerts.unity
+    guid: 856f366e979e6144a8c76691879aad70
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
