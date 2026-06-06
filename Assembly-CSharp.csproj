@@ -56,7 +56,9 @@
     <Compile Include="Assets\Scripts\CriticAlertsMinigame\PacketScript.cs" />
     <Compile Include="Assets\Scripts\PuntuajeScript.cs" />
     <Compile Include="Assets\Scripts\Between_Scripts\IntermissionTimer.cs" />
+    <Compile Include="Assets\Scripts\ButtonMasher\ButtonMashTimerScript.cs" />
     <Compile Include="Assets\Scripts\RegisteredComponentsScript.cs" />
+    <Compile Include="Assets\Scripts\StartingVideo\VideoScript.cs" />
     <Compile Include="Assets\Scripts\TimerScript.cs" />
     <Compile Include="Assets\Scripts\CardBehaviour.cs" />
     <Compile Include="Assets\Scripts\ComponentSpawnerScript.cs" />
@@ -65,6 +67,7 @@
     <Compile Include="Assets\Scripts\RouterSlot.cs" />
     <Compile Include="Assets\Scripts\CriticAlertsMinigame\PacketSpawner.cs" />
     <Compile Include="Assets\Scripts\TimeBarManager.cs" />
+    <Compile Include="Assets\Scripts\ButtonMasher\ButtonMashScript.cs" />
     <Compile Include="Assets\Scripts\EmailHandler.cs" />
     <Compile Include="Assets\Scripts\Botones.cs" />
     <Compile Include="Assets\Scripts\PauseManager.cs" />
@@ -77,6 +80,7 @@
     <Compile Include="Assets\Scripts\RouterDrag.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\PacketMover.cs" />
+    <Compile Include="Assets\Scripts\ButtonMasher\AutoClose.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

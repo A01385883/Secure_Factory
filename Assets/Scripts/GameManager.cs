@@ -13,15 +13,15 @@ public class GameManager : MonoBehaviour
     public int gameTimer = 8;
     public bool debugMode = false;
     private bool gameOver = false;
-    private float winTimer = 0f;
+
     private bool countingWin = false;
 
-    [SerializeField] int[] NivelesAumentosDificultad = { 4, 9, 15, 23 };
+    [SerializeField] int[] NivelesAumentosDificultad = { 6, 11, 17, 25 };
+    //Aceleraciones de tiempo algo genericas, si no trae elementos extra como su dificultad planeo añadir esto de mientras
     [SerializeField] float[] TiempoAumentosDificultad = { 1.3f, 1.6f, 2.0f, 2.5f };
-    private string[] minijuegosnombres = {"CriticAlerts","Memorama","RegisteredComponents" ,"Minijuego_Correo"};
-
+    private string[] minijuegosnombres = {"CriticAlerts","Memorama","RegisteredComponents" , "Masher"};
+    //"Minijuego_Correo" Bajo mantenimiento, le hare un pequeño "Rework" -Memo
     public int score { get; private set; }
-    private int i = 0;
     public int minijuegoactual = 0;
     public int totalJugados = 0;
     private bool primerShuffle = true;
