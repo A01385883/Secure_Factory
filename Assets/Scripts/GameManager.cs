@@ -1,3 +1,5 @@
+
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,10 +19,12 @@ public class GameManager : MonoBehaviour
     private bool countingWin = false;
 
     [SerializeField] int[] NivelesAumentosDificultad = { 6, 11, 17, 25 };
+    //Para probar dificultades, recomiendo 0, 10, 15, 20, 30 por intuitividad
     //Aceleraciones de tiempo algo genericas, si no trae elementos extra como su dificultad planeo añadir esto de mientras
     [SerializeField] float[] TiempoAumentosDificultad = { 1.3f, 1.6f, 2.0f, 2.5f };
-    private string[] minijuegosnombres = {"CriticAlerts","Memorama","RegisteredComponents" , "Masher"};
+    private string[] minijuegosnombres = {"CriticAlerts","Memorama","RegisteredComponents" , "Masher", "Botones", "PurdueModel"};
     //"Minijuego_Correo" Bajo mantenimiento, le hare un pequeño "Rework" -Memo
+    //PD: No creo que regrese
     public int score { get; private set; }
     public int minijuegoactual = 0;
     public int totalJugados = 0;

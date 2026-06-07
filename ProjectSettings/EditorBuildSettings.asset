@@ -38,5 +38,14 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Masher.unity
     guid: b9ca1dcbb38c0884d967db7a79e30c3d
+  - enabled: 1
+    path: Assets/Scenes/ZeroTrustMinigame.unity
+    guid: 7e6c4be87498f4b7594c1c21fcfbdb31
+  - enabled: 1
+    path: Assets/Scenes/Botones.unity
+    guid: 7741d7493cec4a245ad04ede7603b67c
+  - enabled: 1
+    path: Assets/Scenes/PurdueModel.unity
+    guid: 112a691fe71bf4fcab17e0fef207980c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
