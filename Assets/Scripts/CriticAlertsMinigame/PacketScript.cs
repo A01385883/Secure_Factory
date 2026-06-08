@@ -31,7 +31,7 @@ public class PacketScript : MonoBehaviour
         if (!GameManager.Instance.IsGameOver())
         {
             if (holding) return;
-            float speed = moveSpeed + (2 * GameManager.Instance.ObtenerNivelDificultad());
+            float speed = moveSpeed * Mathf.Pow(1.10f, GameManager.Instance.ObtenerDificultadInt());
             if (!clicked)
                 transform.position += Vector3.right * speed * Time.deltaTime;
             else

@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2007232359}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6d49f37c5b1ca64fa8d564dbfec536c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2280501cc19e44f0c9b4ef0de116a9a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   packetSpeed: 2
@@ -1472,12 +1472,12 @@ MonoBehaviour:
   vidas: 3
   gameTimer: 8
   debugMode: 0
-  NivelesAumentosDificultad: 04000000080000000e00000014000000
+  NivelesAumentosDificultad: 060000000b0000001100000019000000
   TiempoAumentosDificultad:
-  - 1.1
-  - 1.2
   - 1.3
-  - 1.5
+  - 1.6
+  - 2
+  - 2.5
   minijuegoactual: 0
   totalJugados: 0
 --- !u!4 &2007232361
