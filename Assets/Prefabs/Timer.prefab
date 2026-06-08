@@ -400,4 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 536b9f5ef92b12346bdda37db1a78458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerScript
+  timer: 15
+  debugMode: 0
+  gameOver: 0
   timerSlider: {fileID: 3704700338113825207}

@@ -5,7 +5,22 @@ public class Botones : MonoBehaviour
 {
     public void Iniciar()
     {
-        SceneManager.LoadScene("Intermission");
+        if (DatabaseManager.Instance != null)
+        {
+            DatabaseManager.Instance.StartRound(roundId =>
+            {
+                // Al responder con éxito la base de datos, cargamos la primera escena
+                SceneManager.LoadScene("Intermission");
+            }, error =>
+            {
+                Debug.LogError("Error de BD al iniciar ronda: " + error);
+                SceneManager.LoadScene("Intermission");
+            });
+        }
+        else
+        {
+            SceneManager.LoadScene("Intermission");
+        }
     }
 
     public void Salir()
