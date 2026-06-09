@@ -44,8 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6d49f37c5b1ca64fa8d564dbfec536c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  difficulty: 1
-  gameOver: 0
+  vidas: 3
+  gameTimer: 8
   debugMode: 0
-  timer: 10
-  paused: 0
+  NivelesAumentosDificultad: 060000000b0000001100000019000000
+  TiempoAumentosDificultad:
+  - 1.3
+  - 1.6
+  - 2
+  - 2.5
+  minijuegoactual: 0
+  totalJugados: 0

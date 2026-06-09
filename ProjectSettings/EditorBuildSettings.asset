@@ -47,5 +47,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PurdueModel.unity
     guid: 112a691fe71bf4fcab17e0fef207980c
+  - enabled: 1
+    path: Assets/Scenes/CatchAnomalies.unity
+    guid: e9ae266bdd2e9451290478383796b63b
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

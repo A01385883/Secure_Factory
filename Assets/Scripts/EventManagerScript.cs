@@ -3,21 +3,19 @@ using UnityEngine;
 public class EventManagerScript : MonoBehaviour
 {
     public bool paused = false;
-    private GameObject helpPanel;
-    private GameObject helpButtonPanel;
+    public GameObject componentsPanel;
+    public GameObject helpPanel;
 
     void Start()
     {
-        helpPanel = GameObject.FindWithTag("Help Panel");
-        helpButtonPanel = GameObject.FindWithTag("Help Button Panel");
-        HelpButtonPressed();
+        CloseHelp();
     }
 
     public void HelpButtonPressed()
     {
         paused = true;
         Time.timeScale = 0f;
-        helpButtonPanel.SetActive(false);
+        componentsPanel.SetActive(false);
         helpPanel.SetActive(true);
     }
 
@@ -26,6 +24,6 @@ public class EventManagerScript : MonoBehaviour
         paused = false;
         Time.timeScale = 1f;
         helpPanel.SetActive(false);
-        helpButtonPanel.SetActive(true);
+        componentsPanel.SetActive(true);
     }
 }

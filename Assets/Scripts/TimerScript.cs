@@ -3,16 +3,16 @@ using UnityEngine.UI;
 
 public class TimerScript : MonoBehaviour
 {
-    public float timer = 60f;
+    public float timer = 40f;
     public bool debugMode = false;
     public bool gameOver = false;
-    private EventManagerScript eventManagerScript;
+    private CriticEventManager eventManagerScript;
     public Slider timerSlider;
     private float timeLeft;
 
     void Start()
     {
-        eventManagerScript = FindAnyObjectByType<EventManagerScript>();
+        eventManagerScript = FindAnyObjectByType<CriticEventManager>();
         timeLeft = timer;
         timerSlider.minValue = 0;
         timerSlider.maxValue = timeLeft;

@@ -5,7 +5,7 @@ public class ComponentSpawnerScript : MonoBehaviour
     public GameObject component;
     private float spawnRate = 2f;
     private float spawnTimer = 0f;
-    private EventManagerScript eventManagerScript;
+    private CriticEventManager eventManagerScript;
     private TimerScript timerScript;
     private Color[] correctColors;
     private Color[] incorrectColors;
@@ -13,16 +13,28 @@ public class ComponentSpawnerScript : MonoBehaviour
 
     void Start()
     {
-        eventManagerScript = FindAnyObjectByType<EventManagerScript>();
+        eventManagerScript = FindAnyObjectByType<CriticEventManager>();
         timerScript = FindAnyObjectByType<TimerScript>();
-        correctColors = GameObject.FindWithTag("Registered Components").GetComponent<RegisteredComponentsScript>().colors;
-        incorrectColors = GameObject.FindWithTag("Registered Components").GetComponent<RegisteredComponentsScript>().otherColors;
-        imgs = GameObject.FindWithTag("Registered Components").GetComponent<RegisteredComponentsScript>().imgs;
+
+        var registered = GameObject.FindWithTag("Registered Components");
+        if (registered == null)
+        {
+            Debug.LogError("No se encontró el objeto con tag 'Registered Components'");
+            return;
+        }
+
+        var regScript = registered.GetComponent<RegisteredComponentsScript>();
+        correctColors = regScript.colors;
+        incorrectColors = regScript.otherColors;
+        imgs = regScript.imgs;
+
         spawnComponent();
     }
 
     void Update()
     {
+        if (timerScript == null || eventManagerScript == null) return;
+
         if (!timerScript.gameOver && !eventManagerScript.paused)
         {
             float difficulty = GameManager.Instance.ObtenerNivelDificultad();
@@ -38,6 +50,8 @@ public class ComponentSpawnerScript : MonoBehaviour
 
     void spawnComponent()
     {
+        if (correctColors == null || incorrectColors == null || imgs == null) return;
+
         int difficulty = GameManager.Instance.ObtenerNivelDificultad();
         GameObject obj = Instantiate(component, transform.position, Quaternion.identity);
         SpriteRenderer fondoRenderer = obj.GetComponent<SpriteRenderer>();

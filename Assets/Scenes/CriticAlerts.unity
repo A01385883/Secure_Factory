@@ -463,8 +463,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 847722207}
-        m_TargetAssemblyTypeName: EventManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 1244500727}
+        m_TargetAssemblyTypeName: CriticEventManager, Assembly-CSharp
         m_MethodName: HelpButtonPressed
         m_Mode: 1
         m_Arguments:
@@ -701,8 +701,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 847722207}
-        m_TargetAssemblyTypeName: EventManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 1244500727}
+        m_TargetAssemblyTypeName: CriticEventManager, Assembly-CSharp
         m_MethodName: CloseHelp
         m_Mode: 1
         m_Arguments:
@@ -1079,17 +1079,6 @@ Transform:
   - {fileID: 919159266}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &847722207 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1723598367210724034, guid: c626429663476f14b803a7e7b29a0ab8, type: 3}
-  m_PrefabInstance: {fileID: 1724896174}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cbc8b4aebce4ec4ebcce1787320b5ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EventManagerScript
 --- !u!1001 &880317478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1148,16 +1137,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8768426712689519147, guid: 5833709e9d13a53438a3f4b86d7a1c29, type: 3}
       propertyPath: debugMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8768426712689519147, guid: 5833709e9d13a53438a3f4b86d7a1c29, type: 3}
       propertyPath: difficulty
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8768426712689519147, guid: 5833709e9d13a53438a3f4b86d7a1c29, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4696809816660855124, guid: 5833709e9d13a53438a3f4b86d7a1c29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2112827997}
   m_SourcePrefab: {fileID: 100100000, guid: 5833709e9d13a53438a3f4b86d7a1c29, type: 3}
 --- !u!1 &919159265
 GameObject:
@@ -1494,6 +1487,24 @@ Transform:
   - {fileID: 1020702412}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1244500724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6846374356987296601, guid: c626429663476f14b803a7e7b29a0ab8, type: 3}
+  m_PrefabInstance: {fileID: 1724896174}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1244500727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244500724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72a6fd677439e214daa4bb02d71bd571, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CriticEventManager
+  paused: 0
 --- !u!1 &1252138635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1822,15 +1833,59 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5477942356990666586, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
+      propertyPath: timer
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5477942356990666586, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
+      propertyPath: timerSlider
+      value: 
+      objectReference: {fileID: 1707491886}
     - target: {fileID: 7150985889994129273, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5477942356990666586, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7150985889994129273, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1707491887}
   m_SourcePrefab: {fileID: 100100000, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
+--- !u!1 &1707491884 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7150985889994129273, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
+  m_PrefabInstance: {fileID: 1447544563}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1707491886 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3704700338113825207, guid: 87a885c2a985d1e4385f33dba3126b09, type: 3}
+  m_PrefabInstance: {fileID: 1447544563}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707491884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &1707491887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1707491884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8cd23c7184f97439ed6f0b4fa389f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TimerScript
+  timer: 40
+  debugMode: 0
+  gameOver: 0
+  timerSlider: {fileID: 1707491886}
 --- !u!1001 &1724896174
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1883,10 +1938,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Event Manager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1723598367210724034, guid: c626429663476f14b803a7e7b29a0ab8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6846374356987296601, guid: c626429663476f14b803a7e7b29a0ab8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1244500727}
   m_SourcePrefab: {fileID: 100100000, guid: c626429663476f14b803a7e7b29a0ab8, type: 3}
 --- !u!1 &1734692031
 GameObject:
@@ -2299,6 +2358,34 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &2112827996 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4696809816660855124, guid: 5833709e9d13a53438a3f4b86d7a1c29, type: 3}
+  m_PrefabInstance: {fileID: 880317478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2112827997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2112827996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6d49f37c5b1ca64fa8d564dbfec536c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  vidas: 3
+  gameTimer: 8
+  debugMode: 0
+  NivelesAumentosDificultad: 060000000b0000001100000019000000
+  TiempoAumentosDificultad:
+  - 1.3
+  - 1.6
+  - 2
+  - 2.5
+  minijuegoactual: 0
+  totalJugados: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -49,6 +49,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.4.0f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\DatabaseManager.cs" />
     <Compile Include="Assets\Scripts\RegisteredComponentsPanelScript.cs" />
     <Compile Include="Assets\Scripts\ComponentScript.cs" />
     <Compile Include="Assets\Scripts\EventManagerScript.cs" />
@@ -64,11 +65,11 @@
     <Compile Include="Assets\Scripts\MiniGameTimer.cs" />
     <Compile Include="Assets\Scripts\CardBehaviour.cs" />
     <Compile Include="Assets\Scripts\ComponentSpawnerScript.cs" />
+    <Compile Include="Assets\Scripts\BucketController.cs" />
     <Compile Include="Assets\Scripts\SplashManager.cs" />
-    <Compile Include="Assets\Scripts\PacketSpawner.cs" />
-    <Compile Include="Assets\Scripts\RouterSlot.cs" />
     <Compile Include="Assets\Scripts\CriticAlertsMinigame\PacketSpawner.cs" />
     <Compile Include="Assets\Scripts\BotonesGameManager.cs" />
+    <Compile Include="Assets\Scripts\BucketManager.cs" />
     <Compile Include="Assets\Scripts\TimeBarManager.cs" />
     <Compile Include="Assets\Scripts\ButtonMasher\ButtonMashScript.cs" />
     <Compile Include="Assets\Scripts\DropZone.cs" />
@@ -76,18 +77,20 @@
     <Compile Include="Assets\Scripts\EmailHandler.cs" />
     <Compile Include="Assets\Scripts\Botones.cs" />
     <Compile Include="Assets\Scripts\PauseManager.cs" />
+    <Compile Include="Assets\Scripts\EventSpawner.cs" />
+    <Compile Include="Assets\Scripts\FallingEvent.cs" />
     <Compile Include="Assets\Scripts\Correo.cs" />
     <Compile Include="Assets\Scripts\CardSpawner.cs" />
     <Compile Include="Assets\Scripts\CardMovement.cs" />
+    <Compile Include="Assets\Scripts\Between_Scripts\SoundManager.cs" />
+    <Compile Include="Assets\Scripts\CriticEventManager.cs" />
     <Compile Include="Assets\Scripts\CriticAlertsMinigame\BucketScript.cs" />
     <Compile Include="Assets\Scripts\ArreglosUICorreo.cs" />
     <Compile Include="Assets\Scripts\MemoramaManager.cs" />
     <Compile Include="Assets\Scripts\Correo_Asignar.cs" />
     <Compile Include="Assets\Scripts\Generic_Timer_Games\Game_Timer.cs" />
     <Compile Include="Assets\Scripts\GameButton.cs" />
-    <Compile Include="Assets\Scripts\RouterDrag.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\PacketMover.cs" />
     <Compile Include="Assets\Scripts\ButtonMasher\AutoClose.cs" />
   </ItemGroup>
   <ItemGroup>

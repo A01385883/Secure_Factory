@@ -67,6 +67,6 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "Secure Factory.slnx",
+    "dotnet.defaultSolution": "Secure_Factory-game-bd-connection.slnx",
     "dotnet.enableWorkspaceBasedDevelopment": false
 }

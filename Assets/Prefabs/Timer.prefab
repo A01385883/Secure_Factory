@@ -397,7 +397,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7150985889994129273}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 536b9f5ef92b12346bdda37db1a78458, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b8cd23c7184f97439ed6f0b4fa389f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TimerScript
+  timer: 40
+  debugMode: 0
+  gameOver: 0
   timerSlider: {fileID: 3704700338113825207}

@@ -15,7 +15,7 @@ public class PacketSpawner : MonoBehaviour
     {
         if (!GameManager.Instance.IsGameOver())
         {
-            if (spawnTimer < (spawnRate / GameManager.Instance.ObtenerMultiplicadorDificultad()))
+            if (spawnTimer < spawnRate)
                 spawnTimer += Time.deltaTime;
             else
             {
