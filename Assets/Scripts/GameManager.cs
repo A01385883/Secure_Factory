@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public bool debugMode = false;
     private bool gameOver = false;
 
-    [SerializeField] int[] NivelesAumentosDificultad = { 6, 11, 17, 25 };
+    [SerializeField] int[] NivelesAumentosDificultad = { 7, 13, 20, 28 };
     [SerializeField] float[] TiempoAumentosDificultad = { 1.3f, 1.6f, 2.0f, 2.5f };
     private string[] minijuegosnombres = {"CriticAlerts","Memorama","RegisteredComponents" , "Masher", "Botones", "PurdueModel" ,"CatchAnomalies"};
 
@@ -275,6 +275,13 @@ public class GameManager : MonoBehaviour
                 if (difficulty == 3) return 28;
                 if (difficulty == 4) return 29;
                 return 30;
+
+            case "CatchAnomalies":
+                if (difficulty == 1) return 31;
+                if (difficulty == 2) return 32;
+                if (difficulty == 3) return 33;
+                if (difficulty == 4) return 34;
+                return 35;
 
             default:
                 return -1; // No es un minijuego (ej: Intermission, PantallaInicial, Puntuaje)
