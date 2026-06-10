@@ -98,7 +98,10 @@ public class GameManager : MonoBehaviour
 
     public int ObtenerDificultadInt()
     {
-        return Mathf.Min(Mathf.CeilToInt(totalJugados / 5f), 5);
+        int dificultadCalculada = Mathf.CeilToInt((float)totalJugados / 5f);
+        int dificultadFinal = Mathf.Clamp(dificultadCalculada, 1, 5);
+        
+        return dificultadFinal;
     }
 
     public bool IsGameOver() => gameOver;
